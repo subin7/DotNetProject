@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e313455998ac42c691f7a8b093c37a3a" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryManagementSystemModel.Author" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementSystemModel.Book" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementSystemModel.fine" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementSystemModel.issue" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementSystemModel.member" Width="1.5" PointX="3.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementSystemModel.publication" Width="1.5" PointX="1.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryManagementSystemModel.Staff" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="LibraryManagementSystemModel.FK__Book__AuthorId__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementSystemModel.FK__Book__Publicatio__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementSystemModel.FK__issues__bookid__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementSystemModel.FK_fine_issues" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementSystemModel.FK_fine_Staff1" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementSystemModel.FK__issues__memid__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="LibraryManagementSystemModel.FK__issues__staffid__32E0915F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Qualification" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PublicationId" Type="char" MaxLength="3" />
+    <Property Name="AuthorId" Type="char" MaxLength="4" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Edition" Type="varchar" MaxLength="20" />
+    <Property Name="PublishDate" Type="date" />
+    <Property Name="Genre" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="fine">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="staffid" Type="char" MaxLength="5" />
+    <Property Name="issueid" Type="char" MaxLength="4" />
+    <Property Name="descripttion" Type="varchar" MaxLength="50" />
+    <Property Name="amount" Type="decimal" Precision="6" Scale="2" />
+  </EntityType>
+  <EntityType Name="issues">
+    <Key>
+      <PropertyRef Name="issueID" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="issueID" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="memid" Type="char" MaxLength="5" />
+    <Property Name="bookid" Type="char" MaxLength="3" />
+    <Property Name="staffid" Type="char" MaxLength="5" />
+    <Property Name="issuedate" Type="date" />
+    <Property Name="refurndate" Type="date" />
+    <Property Name="returneddate" Type="date" />
+  </EntityType>
+  <EntityType Name="member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AddressLine1" Type="varchar" MaxLength="50" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="100" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="mobile" Type="varchar" MaxLength="50" />
+    <Property Name="dob" Type="date" />
+    <Property Name="Gender" Type="char" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="publication">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPersonFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="ContactPersonLastName" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Post" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AddressLine1" Type="varchar" MaxLength="50" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="100" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="mobile" Type="varchar" MaxLength="50" />
+    <Property Name="dob" Type="date" />
+    <Property Name="Gender" Type="char" MaxLength="6" />
+    <Property Name="Post" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Book__AuthorId__2A4B4B5E">
+    <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__Publicatio__29572725">
+    <End Role="publication" Type="Self.publication" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="publication">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="PublicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__issues__bookid__31EC6D26">
+    <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+    <End Role="issues" Type="Self.issues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="issues">
+        <PropertyRef Name="bookid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__issues__memid__30F848ED">
+    <End Role="member" Type="Self.member" Multiplicity="0..1" />
+    <End Role="issues" Type="Self.issues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="issues">
+        <PropertyRef Name="memid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__issues__staffid__32E0915F">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="issues" Type="Self.issues" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="issues">
+        <PropertyRef Name="staffid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fine_issues">
+    <End Role="issues" Type="Self.issues" Multiplicity="0..1" />
+    <End Role="fine" Type="Self.fine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="issues">
+        <PropertyRef Name="issueID" />
+      </Principal>
+      <Dependent Role="fine">
+        <PropertyRef Name="issueid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fine_Staff1">
+    <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+    <End Role="fine" Type="Self.fine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="fine">
+        <PropertyRef Name="staffid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="insAuthor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="char" Mode="In" />
+    <Parameter Name="firstName" Type="varchar" Mode="In" />
+    <Parameter Name="lastName" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="qualification" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SaveAuthor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="type" Type="char" Mode="In" />
+    <Parameter Name="id" Type="char" Mode="In" />
+    <Parameter Name="firstName" Type="varchar" Mode="In" />
+    <Parameter Name="lastName" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="qualification" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SearchAuthor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="value" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SelAuthor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="char" Mode="In" />
+  </Function>
+  <EntityContainer Name="LMSModelStoreContainer">
+    <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="fine" EntityType="Self.fine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="issues" EntityType="Self.issues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="publication" EntityType="Self.publication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Book__AuthorId__2A4B4B5E" Association="Self.FK__Book__AuthorId__2A4B4B5E">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__Publicatio__29572725" Association="Self.FK__Book__Publicatio__29572725">
+      <End Role="publication" EntitySet="publication" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__issues__bookid__31EC6D26" Association="Self.FK__issues__bookid__31EC6D26">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="issues" EntitySet="issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK__issues__memid__30F848ED" Association="Self.FK__issues__memid__30F848ED">
+      <End Role="member" EntitySet="member" />
+      <End Role="issues" EntitySet="issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK__issues__staffid__32E0915F" Association="Self.FK__issues__staffid__32E0915F">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="issues" EntitySet="issues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fine_issues" Association="Self.FK_fine_issues">
+      <End Role="issues" EntitySet="issues" />
+      <End Role="fine" EntitySet="fine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fine_Staff1" Association="Self.FK_fine_Staff1">
+      <End Role="Staff" EntitySet="Staff" />
+      <End Role="fine" EntitySet="fine" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
